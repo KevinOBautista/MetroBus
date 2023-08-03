@@ -1,0 +1,10 @@
+[
+	{
+		"route_name": "5AM NY",
+		"route_date": "2023-08-21",
+		"route_time": "05:00:00",
+		"dispatcher_id": "1",
+		"vehicle_id": "1",
+		"driver_id": "1"
+	}
+]
