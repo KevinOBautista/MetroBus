@@ -6,7 +6,7 @@ exports.up = function (knex) {
 	return knex.schema.createTable("apoyos", (table) => {
 		table.increments("apoyo_id").primary();
 		table.string("apoyo_name").notNullable();
-		table.integer("price").notNullable();
+		table.integer("price").unsigned().notNullable();
 		table.timestamps(true, true);
 	});
 };
