@@ -62,9 +62,11 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toBeDefined();
 			expect(response.status).toBe(400);
 		});
+
 		test("returns 400 if apoyo_name is missing", async () => {
 			const data = {
 				price: 50,
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -75,9 +77,11 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toContain("apoyo_name");
 			expect(response.status).toBe(400);
 		});
+
 		test("returns 400 if price is missing", async () => {
 			const data = {
 				apoyo_name: "Omar B.",
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -88,10 +92,27 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toContain("price");
 			expect(response.status).toBe(400);
 		});
+
+		test("returns 400 if apoyo_mobile_number is missing", async () => {
+			const data = {
+				apoyo_name: "Omar B.",
+				price: 50,
+			};
+
+			const response = await request(app)
+				.post("/apoyos")
+				.set("Accept", "application/json")
+				.send({ data });
+
+			expect(response.body.error).toContain("apoyo_mobile_number");
+			expect(response.status).toBe(400);
+		});
+
 		test("returns 400 if apoyo_name is empty", async () => {
 			const data = {
 				apoyo_name: "",
 				price: 50,
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -102,10 +123,12 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toContain("apoyo_name");
 			expect(response.status).toBe(400);
 		});
+
 		test("returns 400 if price is empty", async () => {
 			const data = {
 				apoyo_name: "Eli B.",
 				price: "",
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -116,10 +139,28 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toContain("price");
 			expect(response.status).toBe(400);
 		});
+
+		test("returns 400 if apoyo_mobile_number is empty", async () => {
+			const data = {
+				apoyo_name: "Eli B.",
+				price: 10,
+				apoyo_mobile_number: "",
+			};
+
+			const response = await request(app)
+				.post("/apoyos")
+				.set("Accept", "application/json")
+				.send({ data });
+
+			expect(response.body.error).toContain("apoyo_mobile_number");
+			expect(response.status).toBe(400);
+		});
+
 		test("returns 400 if price is not a number", async () => {
 			const data = {
 				apoyo_name: "Eli B.",
 				price: "2",
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -130,10 +171,28 @@ describe("Apoyo Routes", () => {
 			expect(response.body.error).toContain("Price");
 			expect(response.status).toBe(400);
 		});
+
+		test("returns 400 if apoyo_mobile_number is not a mobile number", async () => {
+			const data = {
+				apoyo_name: "Eli B.",
+				price: 5,
+				apoyo_mobile_number: "45",
+			};
+
+			const response = await request(app)
+				.post("/apoyos")
+				.set("Accept", "application/json")
+				.send({ data });
+
+			expect(response.body.error).toContain("apoyo_mobile_number");
+			expect(response.status).toBe(400);
+		});
+
 		test("returns 201 if data is valid", async () => {
 			const data = {
 				apoyo_name: "Eli B",
 				price: 100,
+				apoyo_mobile_number: "345-658-7898",
 			};
 
 			const response = await request(app)
@@ -146,6 +205,7 @@ describe("Apoyo Routes", () => {
 				expect.objectContaining({
 					apoyo_name: "Eli B",
 					price: 100,
+					apoyo_mobile_number: "345-658-7898",
 				})
 			);
 			expect(response.status).toBe(201);

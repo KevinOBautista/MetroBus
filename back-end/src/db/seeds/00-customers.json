@@ -1,37 +1,37 @@
 [
 	{
 		"customer_name": "Norlin",
-		"mobile_number": "617-415-3540",
+		"customer_mobile_number": "617-415-3540",
 		"bos_address": "5 WEBSTER CT CHELSEA",
 		"ny_address": ""
 	},
 	{
 		"customer_name": "NELSA",
-		"mobile_number": "617-606-1369",
+		"customer_mobile_number": "617-606-1369",
 		"bos_address": "120 BLOOMINDALE ST CHELSEA",
 		"ny_address": ""
 	},
 	{
 		"customer_name": "TAMARA",
-		"mobile_number": "407-541-7079",
+		"customer_mobile_number": "407-541-7079",
 		"bos_address": "534 BENNIGHTON ST EAST BOSTON",
 		"ny_address": ""
 	},
 	{
 		"customer_name": "MARYLU",
-		"mobile_number": "856-655-8067",
+		"customer_mobile_number": "856-655-8067",
 		"bos_address": "35 SYDNEY ST SOMERVILLE",
 		"ny_address": ""
 	},
 	{
 		"customer_name": "IRIS",
-		"mobile_number": "508-598-8078",
+		"customer_mobile_number": "508-598-8078",
 		"bos_address": "",
 		"ny_address": "1532  5TH ST, BROOKLYN"
 	},
 	{
 		"customer_name": "YUDELKIS",
-		"mobile_number": "646-306-6378",
+		"customer_mobile_number": "646-306-6378",
 		"bos_address": "",
 		"ny_address": "100 GATES AVE, BROOKLYN"
 	}

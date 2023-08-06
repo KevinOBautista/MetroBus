@@ -7,6 +7,7 @@ exports.up = function (knex) {
 		table.increments("apoyo_id").primary();
 		table.string("apoyo_name").notNullable();
 		table.integer("price").unsigned().notNullable();
+		table.string("apoyo_mobile_number").notNullable();
 		table.timestamps(true, true);
 	});
 };

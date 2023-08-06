@@ -1,7 +1,12 @@
 const service = require("./apoyos.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
-const hasRequiredProperties = hasProperties("apoyo_name", "price");
+const hasRequiredProperties = hasProperties(
+	"apoyo_name",
+	"price",
+	"apoyo_mobile_number"
+);
+const validPhone = require("../errors/validPhone");
 
 function checkPrice(req, res, next) {
 	const { price } = req.body.data;
@@ -61,6 +66,7 @@ module.exports = {
 	create: [
 		asyncErrorBoundary(hasRequiredProperties),
 		checkPrice,
+		validPhone,
 		asyncErrorBoundary(create),
 	],
 	update: [
