@@ -9,7 +9,7 @@ exports.up = function (knex) {
 		table.string("customer_mobile_number").notNullable();
 		table.string("bos_address").nullable();
 		table.string("ny_address").nullable();
-		table.string("status").defaultTo("positive").notNullable();
+		table.string("customer_status").defaultTo("positive").notNullable();
 		table.timestamps(true, true);
 	});
 };

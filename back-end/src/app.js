@@ -21,13 +21,12 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-
 app.use("/apoyos", apoyosRouter);
 app.use("/customers", customersRouter);
-// app.use("/dispatchers", dispatchersRouter);
-// app.use("/drivers", driversRouter);
-// app.use("/routes", routesRouter);
-// app.use("/vehicles", vehiclesRouter);
+app.use("/dispatchers", dispatchersRouter);
+app.use("/drivers", driversRouter);
+app.use("/routes", routesRouter);
+app.use("/vehicles", vehiclesRouter);
 
 app.use(notFound);
 app.use(errorHandler);

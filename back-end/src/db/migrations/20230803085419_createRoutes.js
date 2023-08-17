@@ -10,12 +10,12 @@ exports.up = function (knex) {
 		table.time("route_time").notNullable();
 		table
 			.integer("dispatcher_id")
-			.nullable()
+			.notNullable()
 			.references("dispatcher_id")
 			.inTable("dispatchers");
 		table
 			.integer("vehicle_id")
-			.nullable()
+			.notNullable()
 			.references("vehicle_id")
 			.inTable("vehicles");
 		table
@@ -23,7 +23,7 @@ exports.up = function (knex) {
 			.notNullable()
 			.references("driver_id")
 			.inTable("drivers");
-		table.string("status").defaultTo("positive").notNullable();
+		table.string("route_status").defaultTo("positive").notNullable();
 		table.integer("current_customers").unsigned().defaultTo(0);
 		table.timestamps(true, true);
 	});
