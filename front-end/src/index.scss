@@ -1,0 +1,14 @@
+$primary: #f6c451;
+@import "../node_modules/bootstrap/scss/bootstrap";
+body {
+	background-color: #151515;
+	color: white;
+}
+
+.form {
+	background-color: #333333;
+}
+
+.custom-shadow {
+	box-shadow: 0px 0 1rem 7px rgb(0 0 0 / 60%) !important;
+}

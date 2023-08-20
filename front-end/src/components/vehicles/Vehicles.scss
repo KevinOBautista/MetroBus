@@ -1,0 +1,15 @@
+.card {
+	background-color: #333333 !important;
+	color: white;
+}
+
+.buttons {
+	background-color: #242424;
+}
+
+.card:hover {
+	opacity: 90%;
+	outline: groove;
+	outline-offset: 2px;
+	outline-width: 1px;
+}
