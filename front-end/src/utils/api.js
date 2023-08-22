@@ -53,12 +53,16 @@ async function fetchJson(url, options, onCancel) {
 }
 
 /**
- * Retrieves all existing vehicles.
- * @returns {Promise<[vehicles]>}
- *  a promise that resolves to a possibly empty array of vehicles saved in the database.
+ * Retrieves all existing indicated object.
+ * @param obj_type
+ * 	describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
+ * @param signal
+ * 	optional AbortController.signal
+ * @returns {Promise<[objs]>}
+ *  a promise that resolves to a possibly empty array of object type described saved in the database.
  */
-export async function listVehicles(signal) {
-	const url = new URL(`${API_BASE_URL}/vehicles`);
+export async function listObj(obj_type, signal) {
+	const url = new URL(`${API_BASE_URL}/${obj_type}`);
 	return await fetchJson(url, { headers, signal }, []);
 }
 

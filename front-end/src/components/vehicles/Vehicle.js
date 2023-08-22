@@ -18,8 +18,10 @@ function Vehicle({ vehicle, handleDelete }) {
 			className="card text-center col-md-3 m-2 custom-shadow"
 			id={vehicle_id}
 		>
-			<div className="card-body">
+			<div className="card-header">
 				<h5 className="card-title">{vehicle_plate}</h5>
+			</div>
+			<div className="card-body">
 				<h6 className="card-text">Capacity: {vehicle_capacity}</h6>
 			</div>
 			<div className="card-body d-flex justify-content-between">
@@ -32,12 +34,6 @@ function Vehicle({ vehicle, handleDelete }) {
 				<button className="btn btn-danger shadow" onClick={onDelete}>
 					<FontAwesomeIcon icon={faTrash} />
 				</button>
-				{/* <Link
-					className="btn btn-danger shadow "
-					to={`/vehicles/${vehicle_id}/edit`}
-				>
-					<FontAwesomeIcon icon={faTrash} />
-				</Link> */}
 			</div>
 		</div>
 	);
