@@ -9,6 +9,8 @@ import Drivers from "./components/drivers/Drivers";
 import Apoyos from "./components/apoyos/Apoyos";
 import AddVehicle from "./components/vehicles/AddVehicle";
 import EditVehicle from "./components/vehicles/EditVehicle";
+import AddApoyo from "./components/apoyos/AddApoyo";
+import EditApoyo from "./components/apoyos/EditApoyo";
 
 function App() {
 	return (
@@ -16,6 +18,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Dashboard />} />
+					<Route path="/apoyos/:apoyo_id/edit" element={<EditApoyo />} />
+					<Route path="/apoyos/new" element={<AddApoyo />} />
 					<Route path="/apoyos" element={<Apoyos />} />
 					<Route path="/drivers" element={<Drivers />} />
 					<Route path="/routes" element={<Paths />} />

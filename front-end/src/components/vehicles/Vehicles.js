@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import VehicleList from "./VehicleList";
-import { deleteObj, listVehicles } from "../../utils/api";
+import { deleteObj, listObj } from "../../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
 import "./Vehicles.scss";
 import TopButtons from "../common/TopButtons";
@@ -13,7 +13,7 @@ function Vehicles() {
 	function loadVehicles() {
 		const abortController = new AbortController();
 		setVehiclesError(null);
-		listVehicles(abortController.signal)
+		listObj("vehicles", abortController.signal)
 			.then(setVehicles)
 			.catch(setVehiclesError);
 		return () => abortController.abort();
