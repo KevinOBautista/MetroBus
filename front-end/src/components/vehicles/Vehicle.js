@@ -3,8 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Vehicle({ vehicle }) {
+function Vehicle({ vehicle, handleDelete }) {
 	const { vehicle_id, vehicle_plate, vehicle_capacity } = vehicle;
+	function onDelete() {
+		const result = window.confirm(
+			"Delete this vehicle? \n You will not be able to recover it!"
+		);
+		if (result) {
+			handleDelete(vehicle_id);
+		}
+	}
 	return (
 		<div
 			className="card text-center col-md-3 m-2 custom-shadow"
@@ -21,12 +29,15 @@ function Vehicle({ vehicle }) {
 				>
 					<FontAwesomeIcon icon={faPencil} />
 				</Link>
-				<Link
+				<button className="btn btn-danger shadow" onClick={onDelete}>
+					<FontAwesomeIcon icon={faTrash} />
+				</button>
+				{/* <Link
 					className="btn btn-danger shadow "
 					to={`/vehicles/${vehicle_id}/edit`}
 				>
 					<FontAwesomeIcon icon={faTrash} />
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);

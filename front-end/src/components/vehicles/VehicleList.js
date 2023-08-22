@@ -1,9 +1,9 @@
 import React from "react";
 import Vehicle from "./Vehicle";
 
-function VehicleList({ vehicles }) {
+function VehicleList({ vehicles, handleDelete }) {
 	const mappedVehicles = vehicles.map((vehicle, index) => (
-		<Vehicle vehicle={vehicle} key={index} />
+		<Vehicle vehicle={vehicle} key={index} handleDelete={handleDelete} />
 	));
 
 	return (

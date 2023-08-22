@@ -1,6 +1,12 @@
 import React from "react";
+import TopButtons from "../common/TopButtons";
 function Apoyos() {
-	return <h1>Apoyos</h1>;
+	return (
+		<div className="apoyos">
+			<h1>Apoyos</h1>
+			<TopButtons type={"apoyos"} />
+		</div>
+	);
 }
 
 export default Apoyos;

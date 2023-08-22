@@ -63,11 +63,11 @@ export async function listVehicles(signal) {
 }
 
 /**
- * 'create' objects can include: vehicles, drivers, dispatchers, apoyos, customers.
+ * 'Create' objects can include: vehicles, drivers, dispatchers, apoyos, customers.
  *  @param obj_type
- * 	describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
+ * 	 describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
  * 	@param obj
- * 	objects information that is being created with 'Object'
+ * 	 objects information that is being created with 'Object'
  */
 export async function createObj(obj_type, obj, signal) {
 	const url = `${API_BASE_URL}/${obj_type}`;
@@ -83,9 +83,9 @@ export async function createObj(obj_type, obj, signal) {
 /**
  * 'read' objects to get singular one.
  *  @param obj_type
- * 	describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
+ * 	 describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
  * 	@param obj_id
- * 	object id thats being read 'String'.
+ * 	 object id thats being read 'String'.
  */
 export async function readObj(obj_type, obj_id, signal) {
 	const url = new URL(`${API_BASE_URL}/${obj_type}/${obj_id}`);
@@ -95,9 +95,9 @@ export async function readObj(obj_type, obj_id, signal) {
 /**
  * 'edit' objects can include: vehicles, drivers, dispatchers, apoyos, customers.
  * 	@param obj
- * 	objects information that is being edited with 'Object'
+ * 	 objects information that is being edited with 'Object'
  *  @param obj_type
- * 	describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
+ * 	 describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
  */
 export async function editObj(obj_type, obj, signal) {
 	const subsObjType = obj_type.substring(0, obj_type.length - 1);
@@ -107,6 +107,27 @@ export async function editObj(obj_type, obj, signal) {
 		method: "PUT",
 		headers,
 		body: JSON.stringify({ data: { ...obj } }),
+		signal,
+	};
+	return await fetchJson(url, options, {});
+}
+
+/**
+ * 'delete' objects can include: vehicles, drivers, dispatchers, apoyos, customers.
+ * 	@param obj_type
+ * 	describes the object type 'String' can only be vehicles, drivers, dispatchers, apoyos, customers.
+ * 	@param obj_id
+ * 	object id thats being deleted 'String'.
+ * 	@param signal
+ * 	optional AbortController.signal
+ * 	@returns {Promise<Error|*>}
+ * 	a promise that resolves to an empty object.
+ */
+export async function deleteObj(obj_type, obj_id, signal) {
+	const url = `${API_BASE_URL}/${obj_type}/${obj_id}`;
+	const options = {
+		method: "DELETE",
+		headers,
 		signal,
 	};
 	return await fetchJson(url, options, {});
