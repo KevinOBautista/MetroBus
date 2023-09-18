@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import TopButtons from "../common/TopButtons";
 import { listObj, deleteObj } from "../../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
-import DriverList from "./DriverList";
+import DispatcherList from "./DispatcherList";
 
-function Drivers() {
-	const [drivers, setDrivers] = useState([]);
+function Dispatchers() {
+	const [dispatchers, setDispatchers] = useState([]);
 	const [pageError, setPageError] = useState(null);
 
 	useEffect(loadPage, []);
@@ -13,15 +13,15 @@ function Drivers() {
 	function loadPage() {
 		const abortController = new AbortController();
 		setPageError(null);
-		listObj("drivers", abortController.signal)
-			.then(setDrivers)
+		listObj("dispatchers", abortController.signal)
+			.then(setDispatchers)
 			.catch(setPageError);
 		return () => abortController.abort();
 	}
 
 	async function handleDelete(id) {
 		try {
-			await deleteObj("drivers", id);
+			await deleteObj("dispatchers", id);
 			loadPage();
 		} catch (error) {
 			setPageError(error);
@@ -29,13 +29,13 @@ function Drivers() {
 	}
 
 	return (
-		<div className="drivers-view">
-			<h1>Drivers</h1>
-			<TopButtons type={"drivers"} />
-			<DriverList drivers={drivers} handleDelete={handleDelete} />
+		<div className="dispatchers-view">
+			<h1>Dispatchers</h1>
+			<TopButtons type={"dispatchers"} />
+			<DispatcherList dispatchers={dispatchers} handleDelete={handleDelete} />
 			<ErrorAlert error={pageError} />
 		</div>
 	);
 }
 
-export default Drivers;
+export default Dispatchers;

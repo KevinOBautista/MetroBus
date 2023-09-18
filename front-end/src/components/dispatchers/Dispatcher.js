@@ -3,29 +3,33 @@ import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-function Apoyo({ apoyo, handleDelete }) {
-	const { apoyo_id, apoyo_name, price, apoyo_mobile_number } = apoyo;
+function Dispatcher({ dispatcher, handleDelete }) {
+	const { dispatcher_id, dispatcher_name, dispatcher_mobile_number } =
+		dispatcher;
+
 	function onDelete() {
 		const result = window.confirm(
-			"Delete this apoyo? \n You will not be able to recover it!"
+			"Delete this dispatcher? \n You will not be able to recover it!"
 		);
 		if (result) {
-			handleDelete(apoyo_id);
+			handleDelete(dispatcher_id);
 		}
 	}
 	return (
-		<div className="card text-center col-md-3 m-2 custom-shadow" id={apoyo_id}>
+		<div
+			className="card text-center col-md-3 m-2 custom-shadow"
+			id={dispatcher_id}
+		>
 			<div className="card-header">
-				<h4 className="card-title">{apoyo_name}</h4>
+				<h4 className="card-title">{dispatcher_name}</h4>
 			</div>
 			<div className="card-body">
-				<h6 className="card-text">Price: {price}</h6>
-				<h6 className="card-text">Mobile Number: {apoyo_mobile_number}</h6>
+				<h6 className="card-text">Mobile Number: {dispatcher_mobile_number}</h6>
 			</div>
 			<div className="card-body d-flex justify-content-between">
 				<Link
 					className="btn btn-warning shadow "
-					to={`/apoyos/${apoyo_id}/edit`}
+					to={`/dispatchers/${dispatcher_id}/edit`}
 				>
 					<FontAwesomeIcon icon={faPencil} />
 				</Link>
@@ -37,4 +41,4 @@ function Apoyo({ apoyo, handleDelete }) {
 	);
 }
 
-export default Apoyo;
+export default Dispatcher;

@@ -9,6 +9,7 @@ import {
 	faUser,
 	faVanShuttle,
 	faCar,
+	faHeadset,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Layout.scss";
 
@@ -48,6 +49,12 @@ function Menu2() {
 					<NavLink className="nav-link px-2" to="/apoyos">
 						<FontAwesomeIcon icon={faCar} />
 						&nbsp;Apoyos
+					</NavLink>
+				</li>
+				<li className="nav-item">
+					<NavLink className="nav-link px-2" to="/dispatchers">
+						<FontAwesomeIcon icon={faHeadset} />
+						&nbsp;Dispatchers
 					</NavLink>
 				</li>
 				<li className="nav-item">
