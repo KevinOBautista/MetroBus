@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import VehicleForm from "./VehicleForm";
 import { useParams } from "react-router-dom";
 import { editObj, readObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import ErrorAlert from "../Layout/ErrorAlert";
+import DefaultForm from "../common/DefaultForm";
 
 function EditVehicle() {
 	const initialvehicle = {
@@ -15,6 +15,10 @@ function EditVehicle() {
 	const [vehiclesError, setVehiclesError] = useState(null);
 	const { vehicle_id } = useParams();
 	const navigate = useNavigate();
+	const formTemplate = {
+		vehicle_plate: "text",
+		vehicle_capacity: "number",
+	};
 
 	useEffect(loadVehicle, [vehicle_id]);
 
@@ -51,11 +55,13 @@ function EditVehicle() {
 
 	return (
 		<div className="edit-vehicle">
-			<VehicleForm
+			<h1>Edit Vehicle {vehicle_id}</h1>
+			<DefaultForm
 				formData={vehicle}
+				handleChange={handleChange}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
-				handleChange={handleChange}
+				formTemplate={formTemplate}
 			/>
 			<ErrorAlert error={vehiclesError} />
 		</div>

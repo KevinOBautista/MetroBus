@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import TopButtons from "../common/TopButtons";
-import VehicleForm from "./VehicleForm";
 import ErrorAlert from "../Layout/ErrorAlert";
 import { createObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import DefaultForm from "../common/DefaultForm";
 
 function AddVehicle() {
 	const initialFormData = {
@@ -36,15 +36,21 @@ function AddVehicle() {
 			setVehiclesError(error);
 		}
 	}
+
+	const formTemplate = {
+		vehicle_plate: "text",
+		vehicle_capacity: "number",
+	};
 	return (
 		<div className="addVehicle">
 			<h1>Add Vehicles</h1>
 			<TopButtons type={"vehicles"} />
-			<VehicleForm
+			<DefaultForm
 				formData={formData}
 				handleChange={handleChange}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
+				formTemplate={formTemplate}
 			/>
 			<ErrorAlert error={vehiclesError} />
 		</div>

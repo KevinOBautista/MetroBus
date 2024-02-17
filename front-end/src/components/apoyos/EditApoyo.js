@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { editObj, readObj } from "../../utils/api";
-import ApoyoForm from "./ApoyoForm";
 import ErrorAlert from "../Layout/ErrorAlert";
+import DefaultForm from "../common/DefaultForm";
 
 function EditApoyo() {
 	const initialFormData = {
@@ -46,13 +46,21 @@ function EditApoyo() {
 			setApoyosError(error);
 		}
 	}
+
+	const formTemplate = {
+		apoyo_name: "text",
+		price: "number",
+		apoyo_mobile_number: "text",
+	};
 	return (
 		<div className="edit-apoyo">
-			<ApoyoForm
+			<h1>Edit Apoyo</h1>
+			<DefaultForm
 				formData={apoyo}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
 				handleChange={handleChange}
+				formTemplate={formTemplate}
 			/>
 			<ErrorAlert error={apoyosError} />
 		</div>

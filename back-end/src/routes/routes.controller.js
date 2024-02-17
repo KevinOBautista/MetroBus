@@ -4,14 +4,14 @@ const dispatcherService = require("../dispatchers/dispatchers.service");
 const vehicleService = require("../vehicles/vehicles.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
-const hasRequiredProperties = hasProperties([
+const hasRequiredProperties = hasProperties(
 	"route_name",
 	"route_date",
 	"route_time",
 	"dispatcher_id",
 	"vehicle_id",
-	"driver_id",
-]);
+	"driver_id"
+);
 
 async function statusVal(req, res, next) {
 	const { route_status } = req.body.data;
@@ -109,12 +109,13 @@ module.exports = {
 	create: [
 		asyncErrorBoundary(hasRequiredProperties),
 		asyncErrorBoundary(workersExists),
-		statusVal,
+		// asyncErrorBoundary(statusVal),
 		asyncErrorBoundary(create),
 	],
 	update: [
 		asyncErrorBoundary(routeExists),
 		asyncErrorBoundary(hasRequiredProperties),
+		asyncErrorBoundary(statusVal),
 		asyncErrorBoundary(workersExists),
 		asyncErrorBoundary(update),
 	],

@@ -18,7 +18,7 @@ function listWithQuery(date) {
 	return knex(`${tableName} as r`)
 		.select("*")
 		.where({ "r.route_date": date })
-		.andWhereNot("status", "finished")
+		.andWhereNot("route_status", "finished")
 		.orderBy("r.route_time");
 }
 

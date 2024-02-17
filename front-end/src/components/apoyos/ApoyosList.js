@@ -1,9 +1,9 @@
 import React from "react";
-import Apoyo from "./Apoyo";
+import Card from "../common/Card";
 
 function ApoyosList({ apoyos, handleDelete }) {
 	const mappedApoyos = apoyos.map((apoyo, index) => (
-		<Apoyo apoyo={apoyo} key={index} handleDelete={handleDelete} />
+		<Card type={"apoyos"} obj={apoyo} key={index} handleDelete={handleDelete} />
 	));
 
 	return (

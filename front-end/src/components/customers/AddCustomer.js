@@ -5,21 +5,27 @@ import { createObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import DefaultForm from "../common/DefaultForm";
 
-function AddDispatcher() {
+const AddCustomer = () => {
 	const initialFormData = {
-		dispatcher_name: "",
-		dispatcher_mobile_number: "",
+		customer_name: "",
+		customer_mobile_number: "",
+		bos_address: "",
+		ny_address: "",
+		customer_status: "positive",
 	};
 	const [formData, setFormData] = useState({ ...initialFormData });
 	const [pageError, setPageError] = useState(null);
 	const navigate = useNavigate();
 	const formTemplate = {
-		dispatcher_name: "text",
-		dispatcher_mobile_number: "text",
+		customer_name: "text",
+		customer_mobile_number: "text",
+		bos_address: "text",
+		ny_address: "text",
+		customer_status: ["positive", "negative"],
 	};
 
 	function cancelHandler() {
-		navigate("/dispatchers");
+		navigate("/customers");
 	}
 
 	function handleChange({ target }) {
@@ -33,18 +39,18 @@ function AddDispatcher() {
 		event.preventDefault();
 		setPageError(null);
 		try {
-			await createObj("dispatchers", formData);
+			await createObj("customers", formData);
 			setFormData({ ...initialFormData });
-			navigate("/dispatchers");
+			navigate("/customers");
 		} catch (error) {
 			setPageError(error);
 		}
 	}
 
 	return (
-		<div className="add-dispatcher">
-			<h1>Add dispatcher</h1>
-			<TopButtons type={"dispatchers"} />
+		<div className="add-customer">
+			<h1>Add customer</h1>
+			<TopButtons type={"customers"} />
 			<DefaultForm
 				formData={formData}
 				handleChange={handleChange}
@@ -55,6 +61,6 @@ function AddDispatcher() {
 			<ErrorAlert error={pageError} />
 		</div>
 	);
-}
+};
 
-export default AddDispatcher;
+export default AddCustomer;

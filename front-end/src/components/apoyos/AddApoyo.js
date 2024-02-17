@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import TopButtons from "../common/TopButtons";
-import ApoyoForm from "./ApoyoForm";
 import ErrorAlert from "../Layout/ErrorAlert";
 import { createObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import DefaultForm from "../common/DefaultForm";
 
 function AddApoyo() {
 	const initialFormData = {
@@ -35,15 +35,21 @@ function AddApoyo() {
 			setApoyosError(error);
 		}
 	}
+	const formTemplate = {
+		apoyo_name: "text",
+		price: "number",
+		apoyo_mobile_number: "text",
+	};
 	return (
 		<div className="addApoyo">
 			<h1>Add Apoyo</h1>
 			<TopButtons type={"apoyos"} />
-			<ApoyoForm
+			<DefaultForm
 				formData={formData}
 				handleChange={handleChange}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
+				formTemplate={formTemplate}
 			/>
 			<ErrorAlert error={apoyosError} />
 		</div>

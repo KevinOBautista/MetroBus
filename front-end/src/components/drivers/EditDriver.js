@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DriverForm from "./DriverForm";
 import { editObj, readObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import ErrorAlert from "../Layout/ErrorAlert";
+import DefaultForm from "../common/DefaultForm";
 
 function EditDriver() {
 	const initialFormData = {
@@ -47,14 +47,27 @@ function EditDriver() {
 		}
 	}
 
+	const formTemplate = {
+		driver_name: "text",
+		driver_mobile_number: "text",
+	};
+
 	return (
 		<div className="edit-driver">
 			<h1>Edit Driver {driver_id}</h1>
-			<DriverForm
+			{/* <DriverForm
 				formData={formData}
 				handleChange={handleChange}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
+			/> */}
+			<DefaultForm
+				formData={formData}
+				handleChange={handleChange}
+				submitHandler={submitHandler}
+				cancelHandler={cancelHandler}
+				name={"driver"}
+				formTemplate={formTemplate}
 			/>
 			<ErrorAlert error={pageError} />
 		</div>

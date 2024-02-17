@@ -37,8 +37,11 @@ function hasAddress(req, res, next) {
 }
 
 function statusCheck(req, res, next) {
-	const { status } = req.body.data;
-	if (status === "negative" || status === "positive") {
+	const { customer_status } = req.body.data;
+	if (
+		customer_status.toLowerCase() == "negative" ||
+		customer_status.toLowerCase() == "positive"
+	) {
 		next();
 	} else {
 		const error = new Error(`Status must be positive or negative`);

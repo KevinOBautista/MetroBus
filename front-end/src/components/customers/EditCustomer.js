@@ -5,26 +5,32 @@ import { useNavigate } from "react-router-dom";
 import ErrorAlert from "../Layout/ErrorAlert";
 import DefaultForm from "../common/DefaultForm";
 
-function EditDispatcher() {
+const EditCustomer = () => {
 	const initialFormData = {
-		dispatcher_name: "",
-		dispatcher_mobile_number: "",
+		customer_name: "",
+		customer_mobile_number: "",
+		bos_address: "",
+		ny_address: "",
+		customer_status: "",
 	};
 	const [formData, setFormData] = useState({ ...initialFormData });
 	const [pageError, setPageError] = useState(null);
-	const { dispatcher_id } = useParams();
+	const { customer_id } = useParams();
 	const navigate = useNavigate();
 	const formTemplate = {
-		dispatcher_name: "text",
-		dispatcher_mobile_number: "text",
+		customer_name: "text",
+		customer_mobile_number: "text",
+		bos_address: "text",
+		ny_address: "text",
+		customer_status: ["positive", "negative"],
 	};
 
-	useEffect(loadDispatcher, [dispatcher_id]);
+	useEffect(loadcustomer, [customer_id]);
 
-	function loadDispatcher() {
+	function loadcustomer() {
 		const abortController = new AbortController();
 		setPageError(null);
-		readObj("dispatchers", dispatcher_id).then(setFormData).catch(setPageError);
+		readObj("customers", customer_id).then(setFormData).catch(setPageError);
 		return () => abortController.abort();
 	}
 
@@ -36,24 +42,24 @@ function EditDispatcher() {
 	}
 
 	function cancelHandler() {
-		navigate("/dispatchers");
+		navigate("/customers");
 	}
 
 	async function submitHandler(event) {
 		event.preventDefault();
 		setPageError(null);
 		try {
-			await editObj("dispatchers", formData);
+			await editObj("customers", formData);
 			setFormData({ ...initialFormData });
-			navigate("/dispatchers");
+			navigate("/customers");
 		} catch (error) {
 			setPageError(error);
 		}
 	}
 
 	return (
-		<div className="edit-dispatcher">
-			<h1>Edit dispatcher {dispatcher_id}</h1>
+		<div className="edit-customer">
+			<h1>Edit Customer {customer_id}</h1>
 			<DefaultForm
 				formData={formData}
 				handleChange={handleChange}
@@ -64,6 +70,6 @@ function EditDispatcher() {
 			<ErrorAlert error={pageError} />
 		</div>
 	);
-}
+};
 
-export default EditDispatcher;
+export default EditCustomer;

@@ -1,8 +1,13 @@
 import React from "react";
-import Driver from "./Driver";
+import Card from "../common/Card";
 function DriverList({ drivers, handleDelete }) {
 	const mappedDrivers = drivers.map((driver, index) => (
-		<Driver driver={driver} handleDelete={handleDelete} key={index} />
+		<Card
+			type={"drivers"}
+			obj={driver}
+			handleDelete={handleDelete}
+			key={index}
+		/>
 	));
 
 	return (

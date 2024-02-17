@@ -5,23 +5,33 @@ import { createObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import DefaultForm from "../common/DefaultForm";
 
-function AddDispatcher() {
+const AddPaths = () => {
 	const initialFormData = {
-		dispatcher_name: "",
-		dispatcher_mobile_number: "",
+		route_name: "",
+		route_date: "",
+		route_time: "",
+		dispatcher_id: "",
+		vehicle_id: "",
+		driver_id: "",
+		route_status: "positive",
 	};
+	const formTemplate = {
+		route_name: "text",
+		route_date: "date",
+		route_time: "time",
+		dispatcher_id: "number",
+		vehicle_id: "number",
+		driver_id: "number",
+		route_status: ["positive", "negative"],
+	};
+
 	const [formData, setFormData] = useState({ ...initialFormData });
 	const [pageError, setPageError] = useState(null);
 	const navigate = useNavigate();
-	const formTemplate = {
-		dispatcher_name: "text",
-		dispatcher_mobile_number: "text",
-	};
 
 	function cancelHandler() {
-		navigate("/dispatchers");
+		navigate("/routes");
 	}
-
 	function handleChange({ target }) {
 		setFormData({
 			...formData,
@@ -33,18 +43,19 @@ function AddDispatcher() {
 		event.preventDefault();
 		setPageError(null);
 		try {
-			await createObj("dispatchers", formData);
+			formData.vehicle_capacity = Number(formData.vehicle_capacity);
+			await createObj("routes", formData);
 			setFormData({ ...initialFormData });
-			navigate("/dispatchers");
+			navigate("/routes");
 		} catch (error) {
 			setPageError(error);
 		}
 	}
 
 	return (
-		<div className="add-dispatcher">
-			<h1>Add dispatcher</h1>
-			<TopButtons type={"dispatchers"} />
+		<div className="add-routes">
+			<h1>Add routes</h1>
+			<TopButtons type={"routes"} />
 			<DefaultForm
 				formData={formData}
 				handleChange={handleChange}
@@ -55,6 +66,6 @@ function AddDispatcher() {
 			<ErrorAlert error={pageError} />
 		</div>
 	);
-}
+};
 
-export default AddDispatcher;
+export default AddPaths;

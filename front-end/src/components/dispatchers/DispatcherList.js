@@ -1,10 +1,11 @@
 import React from "react";
-import Dispatcher from "./Dispatcher";
+import Card from "../common/Card";
 
 function DispatcherList({ dispatchers, handleDelete }) {
 	const mappedDispatchers = dispatchers.map((dispatcher, index) => (
-		<Dispatcher
-			dispatcher={dispatcher}
+		<Card
+			type={"dispatchers"}
+			obj={dispatcher}
 			handleDelete={handleDelete}
 			key={index}
 		/>
