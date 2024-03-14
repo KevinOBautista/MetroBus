@@ -3,6 +3,7 @@ import TopButtons from "../common/TopButtons";
 import { listObj, deleteObj } from "../../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
 import CustomerList from "./CustomerList";
+import DataGrid from "../common/DataGrid";
 
 function Customers() {
 	const [customers, setCustomers] = useState([]);
@@ -32,7 +33,12 @@ function Customers() {
 		<div className="customer-view">
 			<h1>Customers</h1>
 			<TopButtons type={"customers"} />
-			<CustomerList customers={customers} handleDelete={handleDelete} />
+			{/* <CustomerList customers={customers} handleDelete={handleDelete} /> */}
+			<DataGrid
+				objects={customers}
+				handleDelete={handleDelete}
+				type={"customer"}
+			/>
 			<ErrorAlert error={pageError} />
 		</div>
 	);

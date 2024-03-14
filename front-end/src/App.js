@@ -20,6 +20,7 @@ import EditDispatcher from "./components/dispatchers/EditDispatcher";
 import AddDispatcher from "./components/dispatchers/AddDispatcher";
 import AddPaths from "./components/paths/AddPaths";
 import EditPaths from "./components/paths/EditPaths";
+import PathHistory from "./components/paths/PathHistory";
 
 function App() {
 	return (
@@ -35,6 +36,7 @@ function App() {
 					<Route path="/drivers" element={<Drivers />} />
 					<Route path="/routes/new" element={<AddPaths />} />
 					<Route path="/routes/:route_id/edit" element={<EditPaths />} />
+					<Route path="/routes/history" element={<PathHistory />} />
 					<Route path="/routes" element={<Paths />} />
 					<Route path="/vehicles/:vehicle_id/edit" element={<EditVehicle />} />
 					<Route path="/vehicles/new" element={<AddVehicle />} />

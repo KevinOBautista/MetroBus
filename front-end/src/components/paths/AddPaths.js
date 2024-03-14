@@ -1,33 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopButtons from "../common/TopButtons";
 import ErrorAlert from "../Layout/ErrorAlert";
-import { createObj } from "../../utils/api";
+import { createObj, listObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-import DefaultForm from "../common/DefaultForm";
+import PathsForm from "./PathsForm";
+import { today } from "../../utils/date-time";
+import PathsForm2 from "./PathsForm2";
 
 const AddPaths = () => {
 	const initialFormData = {
 		route_name: "",
-		route_date: "",
+		route_date: today(),
 		route_time: "",
 		dispatcher_id: "",
 		vehicle_id: "",
 		driver_id: "",
 		route_status: "positive",
 	};
-	const formTemplate = {
-		route_name: "text",
-		route_date: "date",
-		route_time: "time",
-		dispatcher_id: "number",
-		vehicle_id: "number",
-		driver_id: "number",
-		route_status: ["positive", "negative"],
-	};
 
 	const [formData, setFormData] = useState({ ...initialFormData });
 	const [pageError, setPageError] = useState(null);
+	const [drivers, setDrivers] = useState([]);
+	const [vehicles, setVehicles] = useState([]);
+	const [dispatchers, setDispatchers] = useState([]);
 	const navigate = useNavigate();
+
+	useEffect(loadPeople, []);
+
+	function loadPeople() {
+		const abortController = new AbortController();
+		setPageError(null);
+		listObj("vehicles", abortController.signal)
+			.then(setVehicles)
+			.catch(setPageError);
+		listObj("drivers", abortController.signal)
+			.then(setDrivers)
+			.catch(setPageError);
+		listObj("dispatchers", abortController.signal)
+			.then(setDispatchers)
+			.catch(setPageError);
+		return () => abortController.abort();
+	}
 
 	function cancelHandler() {
 		navigate("/routes");
@@ -42,8 +55,8 @@ const AddPaths = () => {
 	async function submitHandler(event) {
 		event.preventDefault();
 		setPageError(null);
+		console.log(formData);
 		try {
-			formData.vehicle_capacity = Number(formData.vehicle_capacity);
 			await createObj("routes", formData);
 			setFormData({ ...initialFormData });
 			navigate("/routes");
@@ -56,13 +69,17 @@ const AddPaths = () => {
 		<div className="add-routes">
 			<h1>Add routes</h1>
 			<TopButtons type={"routes"} />
-			<DefaultForm
+			<PathsForm
 				formData={formData}
 				handleChange={handleChange}
 				submitHandler={submitHandler}
 				cancelHandler={cancelHandler}
-				formTemplate={formTemplate}
+				drivers={drivers}
+				dispatchers={dispatchers}
+				vehicles={vehicles}
+				type="add"
 			/>
+
 			<ErrorAlert error={pageError} />
 		</div>
 	);

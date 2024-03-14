@@ -7,6 +7,12 @@ const hasRequiredProperties = hasProperties(
 );
 const validPhone = require("../errors/validPhone");
 
+const createMiddlewares = [
+	asyncErrorBoundary(hasRequiredProperties),
+	asyncErrorBoundary(hasAddress),
+	asyncErrorBoundary(validPhone),
+];
+
 async function customerExists(req, res, next) {
 	const { customer_id } = req.params;
 	const customer = await service.read(customer_id);
@@ -50,18 +56,43 @@ function statusCheck(req, res, next) {
 	}
 }
 
+async function createMiddlewareChecker(req, res, next) {
+	const customers = req.body.data;
+	if (Array.isArray(customers)) {
+		for (const customer of customers) {
+			for (const middleware of createMiddlewares) {
+				await middleware({ body: { data: customer } }, res, next);
+			}
+		}
+	} else {
+		for (const middleware of createMiddlewares) {
+			await middleware(req, res, next);
+		}
+	}
+}
+
 async function read(req, res) {
 	res.json({ data: res.locals.customer });
 }
 
 async function list(req, res) {
-	const data = await service.list();
-	res.json({ data });
+	if (req.query.route_id) {
+		const data = await service.listRouteCustomers(req.query.route_id);
+		res.json({ data });
+	} else {
+		const data = await service.list();
+		res.json({ data });
+	}
 }
 
 async function create(req, res) {
-	const createdCustomer = await service.create(req.body.data);
-	res.status(201).json({ data: createdCustomer });
+	if (Array.isArray(req.body.data)) {
+		const createdCustomers = await service.createCustomers(req.body.data);
+		res.status(201).json({ data: createdCustomers });
+	} else {
+		const createdCustomer = await service.create(req.body.data);
+		res.status(201).json({ data: createdCustomer });
+	}
 }
 
 async function update(req, res) {
@@ -78,9 +109,11 @@ module.exports = {
 	read: [asyncErrorBoundary(customerExists), asyncErrorBoundary(read)],
 	list: [asyncErrorBoundary(list)],
 	create: [
-		asyncErrorBoundary(hasRequiredProperties),
-		asyncErrorBoundary(hasAddress),
-		asyncErrorBoundary(validPhone),
+		// asyncErrorBoundary(hasRequiredProperties),
+		// asyncErrorBoundary(hasAddress),
+		// asyncErrorBoundary(validPhone),
+		// checkIfArray,
+		asyncErrorBoundary(createMiddlewareChecker),
 		asyncErrorBoundary(create),
 	],
 	update: [

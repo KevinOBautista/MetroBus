@@ -14,6 +14,10 @@ const CustomerList = ({ customers, handleDelete }) => {
 			{mappedCustomers.length > 0 && mappedCustomers}
 			{mappedCustomers.length < 0 && "No Customers"}
 		</div>
+		// <ul className="customers list-group">
+		// 	{mappedCustomers.length > 0 && mappedCustomers}
+		// 	{mappedCustomers.length < 0 && "No Customers"}
+		// </ul>
 	);
 };
 

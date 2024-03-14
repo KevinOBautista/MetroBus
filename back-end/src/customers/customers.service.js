@@ -9,6 +9,22 @@ function list() {
 	return knex("customers as c");
 }
 
+function listRouteCustomers(routeId) {
+	return knex(tableName).where({ route_assignment: routeId });
+}
+
+function createCustomers(customers) {
+	return knex.transaction(async (trx) => {
+		try {
+			const createdRecords = await trx(tableName).insert(customers, "*");
+			console.log("Customers inserted successfully:", createdRecords);
+		} catch (error) {
+			console.error("Error inserting customers:", error);
+			throw error;
+		}
+	});
+}
+
 function create(customer) {
 	return knex(tableName)
 		.insert(customer, "*")
@@ -27,4 +43,6 @@ module.exports = {
 	list,
 	create,
 	update,
+	listRouteCustomers,
+	createCustomers,
 };

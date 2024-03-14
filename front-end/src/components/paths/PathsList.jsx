@@ -8,7 +8,7 @@ const PathsList = ({ routes, handleDelete }) => {
 	return (
 		<div className="routes row justify-content-center">
 			{mappedRoutes.length > 0 && mappedRoutes}
-			{mappedRoutes.length < 0 && "No routes"}
+			{mappedRoutes.length <= 0 && "No routes"}
 		</div>
 	);
 };

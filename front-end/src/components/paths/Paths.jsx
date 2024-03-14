@@ -4,6 +4,7 @@ import { listObj, deleteObj } from "../../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
 import PathsList from "./PathsList";
 import TopButtons from "../common/TopButtons";
+import { Link } from "react-router-dom";
 
 function Paths() {
 	const [routes, setRoutes] = useState([]);
@@ -16,7 +17,6 @@ function Paths() {
 		setPageError(null);
 		listObj(`routes?date=${today()}`, abortController.signal)
 			.then(setRoutes)
-			.then(console.log(routes))
 			.catch(setPageError);
 		return () => abortController.abort();
 	}
@@ -42,6 +42,16 @@ function Paths() {
 			</div> */}
 			<h2 className="text-center">Today's Routes</h2>
 			<PathsList routes={routes} handleDelete={handleDelete} />
+			<div className="view-history d-flex justify-content-center position-absolute">
+				<div className="button position-absolute top-50 start-50 translate-middle z-3">
+					<Link className="btn btn-warning " to={"/routes/history"}>
+						View History
+					</Link>
+				</div>
+				<div className="imageContainer position-relative">
+					<img src="./history-view.png" alt="history-view" />
+				</div>
+			</div>
 			<ErrorAlert error={pageError} />
 		</div>
 	);
