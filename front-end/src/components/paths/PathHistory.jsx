@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TopButtons from "../common/TopButtons";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import { deleteObj, listObj } from "../../utils/api";
 import PathsList from "./PathsList";
 

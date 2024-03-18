@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { editObj, readObj } from "../../utils/api";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import DefaultForm from "../common/DefaultForm";
 
 function EditApoyo() {

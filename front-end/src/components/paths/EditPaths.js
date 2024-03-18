@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { editObj, listObj, readObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import PathsForm2 from "./PathsForm2";
 import { formatAs12HR } from "../../utils/date-time";
 import AddCustomers from "./AddCustomers";

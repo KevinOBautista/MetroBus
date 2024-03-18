@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopButtons from "../common/TopButtons";
 import { listObj, deleteObj } from "../../utils/api";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import CustomerList from "./CustomerList";
 import DataGrid from "../common/DataGrid";
 

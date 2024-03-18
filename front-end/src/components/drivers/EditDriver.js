@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { editObj, readObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import DefaultForm from "../common/DefaultForm";
 
 function EditDriver() {

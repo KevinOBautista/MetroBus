@@ -89,7 +89,7 @@ const DataGrid = ({ objects, handleDelete, type }) => {
 
 	return (
 		<div className="container">
-			<table className="table table-striped">
+			<table className="table table-striped table-responsive">
 				<thead>
 					<tr>{titles}</tr>
 				</thead>

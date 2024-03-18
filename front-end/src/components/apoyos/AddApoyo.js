@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TopButtons from "../common/TopButtons";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import { createObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import DefaultForm from "../common/DefaultForm";

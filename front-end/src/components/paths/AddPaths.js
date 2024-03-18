@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TopButtons from "../common/TopButtons";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import { createObj, listObj } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import PathsForm from "./PathsForm";

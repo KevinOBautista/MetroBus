@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layout/Layout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Customers from "./components/customers/Customers";
 import AddCustomer from "./components/customers/AddCustomer";

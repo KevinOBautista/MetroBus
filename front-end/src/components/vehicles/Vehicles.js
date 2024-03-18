@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import VehicleList from "./VehicleList";
 import { deleteObj, listObj } from "../../utils/api";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import "./Vehicles.scss";
 import TopButtons from "../common/TopButtons";
 

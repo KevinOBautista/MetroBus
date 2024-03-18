@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { today } from "../../utils/date-time";
 import { listObj, deleteObj } from "../../utils/api";
-import ErrorAlert from "../Layout/ErrorAlert";
+import ErrorAlert from "../layout/ErrorAlert";
 import PathsList from "./PathsList";
 import TopButtons from "../common/TopButtons";
 import { Link } from "react-router-dom";
@@ -49,7 +49,11 @@ function Paths() {
 					</Link>
 				</div>
 				<div className="imageContainer position-relative">
-					<img src="./history-view.png" alt="history-view" />
+					<img
+						src="./history-view.png"
+						alt="history-view"
+						className="w-100 h-auto"
+					/>
 				</div>
 			</div>
 			<ErrorAlert error={pageError} />
